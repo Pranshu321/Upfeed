@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { NewsContext } from "../Api/ContextApi";
-// import SingleNews from "./SingleNews";
+import SingleNews from "./SingleNews.js";
 import { Entypo } from "@expo/vector-icons";
 
 const Search = () => {
@@ -87,7 +87,7 @@ const Search = () => {
           <Entypo name="circle-with-cross" size={30} color="white" />
         </TouchableOpacity>
         <View style={{ height: "100%", transform: [{ scaleY: -1 }] }}>
-          {/* <SingleNews item={currentNews} darkTheme={darkTheme} /> */}
+          <SingleNews item={currentNews} darkTheme={darkTheme} />
         </View>
       </Modal>
     </View>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   singleResult: {
     borderRadius: 5,
     padding: 10,
-    margin: 0.5,
+    margin: 2,
     shadowColor: "black",
     elevation: 5,
   },

@@ -4,7 +4,7 @@ import { MaterialCommunityIcons, SimpleLineIcons , AntDesign } from '@expo/vecto
 import {NewsContext} from '../Api/ContextApi';
 const TopNavigation = ({ index, setIndex }
 ) => {
-    const { darkTheme, setDarkTheme, fetchNews } = useContext(NewsContext);
+    const { darkTheme, setDarkTheme, fetchNews , setindex} = useContext(NewsContext);
     return (
         <View style={{ ...styles.container, backgroundColor: darkTheme ? "#282C35" : "white" }}>
             {index == 0 ?
@@ -17,7 +17,7 @@ const TopNavigation = ({ index, setIndex }
                         />
                     </Text>
                 </TouchableOpacity>) : (
-                    <TouchableOpacity style={styles.left} onPress={() => { setIndex(!index) }}>
+                    <TouchableOpacity style={styles.left} onPress={() => { setindex(0) }}>
                         <SimpleLineIcons name='arrow-left' size={15} color="#007FFF" />
                         <Text style={{ ...styles.text, color: darkTheme ? "lightgrey" : "black" }}>Discover</Text>
                     </TouchableOpacity>
@@ -30,13 +30,13 @@ const TopNavigation = ({ index, setIndex }
 
             {
                 index ? (
-                  <TouchableOpacity style={styles.right}>
+                  <TouchableOpacity style={styles.right} onPress={() => fetchNews("general")}>
                     <Text style={styles.text}>
                         <AntDesign name='reload1' size={24} color="#007FFF" />
                     </Text>
                   </TouchableOpacity>
                 ) : (
-                   <TouchableOpacity style={styles.left} onPress={()=>setIndex(!index)}>
+                   <TouchableOpacity style={styles.left} onPress={()=>setindex(1)}>
                     <Text style={{...styles.text , color: darkTheme ? "white" : "black" }}>All News</Text>
                     <SimpleLineIcons name='arrow-right' size={15} color="#007FFF" />
                    </TouchableOpacity>

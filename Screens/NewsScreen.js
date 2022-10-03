@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView , Text, View, Image } from 'react-native'
+import { StyleSheet, ScrollView , Text, View, Image, TouchableOpacity, Linking } from 'react-native'
 import React, { useContext } from 'react'
 import { NewsContext } from '../Api/ContextApi'
 // import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards';
@@ -13,8 +13,11 @@ const NewsScreen = () => {
         articles.map((item, i) => (
           <View key={i} style={{...styles.blog_post , backgroundColor: darkTheme ? "white" : "black"}} >
             <View style={styles.img} >
+            <TouchableOpacity onPress={()=>Linking.openURL(articles[i].url)}>
               <Image style={styles.img_main} source={{ uri: articles[i].urlToImage }} alt="random image" />
+              </TouchableOpacity>
             </View>
+            
             <View style={styles.container_copy}>
               <Text style={{ marginLeft: 10, fontSize: 15, fontWeight: "800" , color: darkTheme ? "#999" : "white" }}>{articles[i].source.name}</Text>
               <Text style={{  fontSize: 16, letterSpacing: 2, color: darkTheme ? "#333" : "white", fontWeight: "700", paddingVertical: 9 }}>{articles[i].title}</Text>
