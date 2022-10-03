@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Header from './Components/Header';
 import Context from './Api/ContextApi';
+import InshortTabs from './Components/InTabs';
 
 function App() {
   return (
-    <View style={{...styles.container , backgroundColor: "#282C35"}}>
-      <Header />
+    <View style={{ ...styles.container, backgroundColor: "#282C35" }}>
+      <InshortTabs />
     </View>
   );
 }
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ()=>{
+export default () => {
   return (<Context>
     <App />
   </Context>);
