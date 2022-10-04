@@ -15,10 +15,11 @@ import { Entypo } from "@expo/vector-icons";
 const Search = () => {
   const {
     darkTheme,
-    News: { articles },
+    News: { articles },  
   } = useContext(NewsContext);
 
   const [searchResults, setSearchResults] = useState([]);
+  const [inputclear, setinputclear] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [currentNews, setCurrentNews] = useState();
 
@@ -43,8 +44,9 @@ const Search = () => {
           backgroundColor: darkTheme ? "black" : "lightgrey",
           color: darkTheme ? "white" : "black",
         }}
-        onChangeText={(text) => handleSearch(text)}
+        onChangeText={(text) =>{ handleSearch(text); setinputclear(text)}}
         placeholder="Search for news"
+        value={inputclear}
         placeholderTextColor={darkTheme ? "white" : "grey"}
       />
       <View style={styles.searchResults}>
@@ -52,7 +54,7 @@ const Search = () => {
           <TouchableOpacity
             key={n.title}
             activeOpacity={0.7}
-            onPress={() => handleModal(n)}
+            onPress={() => {handleModal(n); setinputclear(""); setSearchResults([]);}}
           >
             <Text
               style={{

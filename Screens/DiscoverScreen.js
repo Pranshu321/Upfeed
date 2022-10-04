@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   Text,
+  ScrollView,
   TextInput,
   TouchableOpacity,
   View,
@@ -19,49 +20,51 @@ const DiscoverScreen = () => {
   const { setCategory, setSource, darkTheme } = useContext(NewsContext);
 
   return (
-    <View style={{...styles.discover , backgroundColor: darkTheme ? "#282C35" : "white"}}>
-      <Search />
-      <Text
-        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
-      >
-        Categories
-      </Text>
-      <FlatList 
-        data={categories}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item})=>{
-          return (
-            <TouchableOpacity
-              onPress={() => setCategory(item.name)}
-              style={{...styles.category , marginHorizontal: 20}}
-            >
-              <Image source={{ uri: item.pic }} style={styles.categoryImage} />
-              <Text
-                style={{ ...styles.name, color: darkTheme ? "white" : "black" }}
+    <View style={{ ...styles.discover, backgroundColor: darkTheme ? "#282C35" : "white" }}>
+      <ScrollView>
+        <Search />
+        <Text
+          style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
+        >
+          Categories
+        </Text>
+        <FlatList
+          data={categories}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => setCategory(item.name)}
+                style={{ ...styles.category, marginHorizontal: 20 }}
               >
-                {item.name}
-              </Text>
+                <Image source={{ uri: item.pic }} style={styles.categoryImage} />
+                <Text
+                  style={{ ...styles.name, color: darkTheme ? "white" : "black" }}
+                >
+                  {item.name}
+                </Text>
+              </TouchableOpacity>
+            )
+          }}
+        />
+        <Text
+          style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
+        >
+          Sources
+        </Text>
+        <View style={styles.sources}>
+          {sources.map((s) => (
+            <TouchableOpacity
+              onPress={() => setSource(s.id)}
+              key={s.id}
+              style={styles.sourceContainer}
+            >
+              <Image source={{ uri: s.pic }} style={styles.sourceImage} />
             </TouchableOpacity>
-          )
-        }}
-      />
-      <Text
-        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
-      >
-        Sources
-      </Text>
-      <View style={styles.sources}>
-        {sources.map((s) => (
-          <TouchableOpacity
-            onPress={() => setSource(s.id)}
-            key={s.id}
-            style={styles.sourceContainer}
-          >
-            <Image source={{ uri: s.pic }} style={styles.sourceImage} />
-          </TouchableOpacity>
-        ))}
-      </View>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 };

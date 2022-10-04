@@ -6,7 +6,7 @@ import { NewsContext } from '../Api/ContextApi'
 const NewsScreen = () => {
 
   const { News: { articles }, darkTheme } = useContext(NewsContext);
-  console.log(articles);
+  // console.log(articles);
   return (
     <ScrollView style={{ ...styles.carousel, backgroundColor: darkTheme ? "black" : "white" }}>
       {articles != null ? (
